@@ -99,10 +99,15 @@ export default function SignupPage() {
       });
 
       console.log("User signed up and data saved in Firestore");
-    } catch (error: any) {
-      setFirebaseError(error.message);
-      console.error("Firebase Error:", error.message);
-    } finally {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setFirebaseError(error.message);
+        console.error("Firebase Error:", error.message);
+      } else {
+        setFirebaseError("An unknown error occurred");
+        console.error("Firebase Error: An unknown error occurred", error);
+      }
+    }finally {
       setLoading(false);
     }
   };
