@@ -19,6 +19,7 @@ export default function LoginPage() {
 
     console.log("Login attempt:", { email, password })
     
+    
   }
 
   return (
